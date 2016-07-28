@@ -1,0 +1,181 @@
+\section{Summary of Random Variables}
+\subsection{Expected Value}
+The expected value of a random variable $X$ is the weighted average value of $X$ over the probability space. It is defined by the following:
+\begin{paracol}{2}
+    \subsubsection{Expected Value of DRV's}
+    \syncallcounters
+    \begin{equation*}
+    \begin{aligned}
+        EX &= \sum_{x}xp(x)
+    \end{aligned}
+    \end{equation*}
+
+    \switchcolumn \subsubsection{Expected Value of CRV's}
+    \syncallcounters
+    \begin{equation*}
+    \begin{aligned}
+        EX &= \int_{-\infty}^{\infty}xf(x)dx
+    \end{aligned}
+    \end{equation*}
+
+\end{paracol}
+
+\subsubsection{Properties of Expectation}
+\paragraph{Linearity}
+$$E[aX+bY] = aE[X] + bE[Y] \qquad \text{where $a$ and $b$ are constants, and $X$ and $Y$ are random variables}$$
+
+\subsection{Variance}
+The variance is related to the square of the difference between the output of a random variable and the weighted average, $\mu$. It is a measure of the spread of values of a random variable.
+\begin{paracol}{2}[]
+    \subsubsection{Variance of DRV's}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(X) &= E[(X - \mu)^2] \\
+        &= \sum_{x}(x - \mu)^2p(x) \\
+        &= \sum_{x}(x^2 - 2 \mu x + \mu^2)p(x) \\
+        &= \sum_{x}x^2p(x) - 2 \mu \sum_{x} xp(x) + \mu^2 \sum_{x}p(x) \\
+        &= E[X^2]-2\mu^2+\mu^2 \\
+        &= E[X^2]-\mu^2
+    \end{aligned}
+    \end{equation*}
+
+    IE:
+    \begin{equation*}
+        \text{Var}(X) = E[X^2]-(E[X])^2
+    \end{equation*}
+
+    \syncallcounters
+    \switchcolumn \subsubsection{Variance of CRV's}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(X) &= E[(X - \mu)^2] \\
+                      &= \int_{-\infty}^{\infty}(x - \mu)^2p(x) \\
+                      &= \int_{-\infty}^{\infty}(x^2 - 2 \mu x + \mu^2)p(x) \\
+                      &= \int_{-\infty}^{\infty}x^2p(x) - 2 \mu \int_{-\infty}^{\infty} xp(x) + \mu^2 \int_{-\infty}^{\infty}p(x) \\
+                      &= E[X^2]-2\mu^2+\mu^2 \\
+                      &= E[X^2]-\mu^2
+    \end{aligned}
+    \end{equation*}
+
+    IE:
+    \begin{equation*}
+        \text{Var}(X) = E[X^2]-(E[X])^2
+    \end{equation*}
+
+\end{paracol}
+
+\subsection{Common Distributions and their Properties}
+\subsubsection{Bernoulli}
+The Bernoulli distribution is a distribution in which there are 2 outcomes: 1, with probability p; and 0 otherwise.
+    \[
+        p(x) = \begin{cases}
+            1 & \quad \text{with probability p} \\
+            0 & \quad \text{otherwise}
+        \end{cases}
+    \]
+
+\paragraph{Expectation}
+$$EX = p$$
+
+\paragraph{Variance}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(x) &= E[X^2] - (EX)^2
+                      &= p - p^2
+    \end{aligned}
+    \end{equation*}
+\subsubsection{Binomial}
+The Binomial distribution is the distribution of the number of success in n independent Bernoulli trials with probability p.
+$$p(i) = \binom{n}{i}p^i(1-p)^{n-i} \qquad i=0,1,\dots,n$$
+
+This pmf can be thought of as the number of ways to distribute $i$ successes $\binom{n}{i}$, times the probability of $i$ successes ($p^i$), times the probability of ($n-i$) failures ($(1-p)^{n-i}$):
+
+\paragraph{Expectation}
+By linearity of expectation of $n$ bernoulli trials with probability $p$:
+$$EX = np $$
+
+\paragraph{Variance}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(x) &= E[X^2] - (EX)^2 \\
+                      &= np[(n-1)p+1] - n^2p^2 \\
+                      &= np(1-p)
+    \end{aligned}
+    \end{equation*}
+
+\subsubsection{Poisson}
+The poisson distribution is the binomial distribution taken to its limits where 
+$$\lim_{n \to \infty} \lim_{p \to 0} np = \lambda$$
+
+$$p(i) = e^{-\lambda} \frac{\lambda^i}{i!}$$
+
+\paragraph{Expectation}
+$$EX = \lambda$$
+
+\paragraph{Variance}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(x) &= E[X^2] - (EX)^2 \\
+                      &= \lambda (\lambda+1) - \lambda^2 \\
+                      &= \lambda
+    \end{aligned}
+    \end{equation*}
+
+\subsubsection{Geometric}
+The geometric distribution represents the number of independent bernoulli trials of probability $p$ until a success occurs:
+$$P(X=n) = (1-p)^{n-1}p \qquad n=1,2,\dots$$
+
+\paragraph{Expectation}
+The derivation won't be shown here, but  can be justified intuitively. The expected value is just the average number of trial until you get a success. An example of this is that you will roll a 1 on a die every 6 rolls on average.
+$$EX = 1/p$$
+
+\paragraph{Variance}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(x) &= E[X^2] - (EX)^2 \\
+                      &= \frac{q+1}{p^2}-\frac{1}{p^2} 
+                      &= \frac{q}{p^2}
+                      &=\frac{1-p}{p^2}
+    \end{aligned}
+    \end{equation*}
+
+\subsubsection{Hypergeometric}
+\paragraph{Story}
+You have an urn with $b$ black balls and $w$ white balls. The random variable $X$ represents the number of white balls grabbed when $n$ balls are randomly grabbed with equal probability, and without replacement.
+$$P(X=i) = \frac{\binom{w}{i}\binom{b}{n-i}}{\binom{w+b}{n}} \qquad i=0,1,\dots,n $$
+
+\paragraph{Expectation}
+$$EX = \frac{nm}{N}$$
+
+\paragraph{Variance} where $N=w+b$, and $p=m/N$
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(x) &= E[X^2] - (EX)^2 \\
+                      &= \frac{nw}{N}[\frac{(n-1)(w-1)}{N-1}+1-\frac{nw}{N}] \\
+                      &= np[(n-1)p-(n-1)\frac{1-p}{N-1}+1-np] \\
+                      &= np(1-p)(1-\frac{n-1}{N-1}) \\
+                      &\approx np(1-p) 
+    \end{aligned}
+    \end{equation*}
+
+\subsubsection{Negative Binomial}
+$X$ is the number of independent bernoulli trials until $r$ successes.
+$$P(X=n) = \binom{n-1}{r-1}p^r(1-p)^{n-r} \qquad n=r,r+1,\dots$$
+
+\paragraph{Expectation}
+$$EX = \frac{r}{p}$$
+
+\paragraph{Variance}
+    \begin{equation*}
+    \begin{aligned}
+        \text{Var}(x) &= E[X^2] - (EX)^2 \\
+                      &= \frac{r}{p}(\frac{r+1}{p}-1) (\frac{r}{p^2})^2 \\
+                      &= \frac{r(1-p)}{p^2}
+    \end{aligned}
+    \end{equation*}
+
+\subsubsection{Zeta}
+$$P(X=k)=\frac{C}{k^{\alpha+1}} \qquad k=1,2,\dots$$
+It is related to the Riemann zeta function:
+$$\zeta(s) = 1 + (\frac{1}{2})^s + (\frac{1}{3})^s + \dots + (\frac{1}{k})^s + \dots$$
+
