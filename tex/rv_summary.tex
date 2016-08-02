@@ -1,5 +1,8 @@
 \section{Summary of Random Variables}
 \subsection{Expected Value}
+
+$$F_y(x) = \int_{0}^{log(x)}f(y)dy$$
+
 The expected value of a random variable $X$ is the weighted average value of $X$ over the probability space. It is defined by the following:
 \begin{paracol}{2}
     \subsubsection{Expected Value of DRV's}
@@ -109,6 +112,8 @@ $$\lim_{n \to \infty} \lim_{p \to 0} np = \lambda$$
 
 $$p(i) = e^{-\lambda} \frac{\lambda^i}{i!}$$
 
+Lambda can be thought of as the rate an event occurs.
+
 \paragraph{Expectation}
 $$EX = \lambda$$
 
@@ -120,6 +125,12 @@ $$EX = \lambda$$
                       &= \lambda
     \end{aligned}
     \end{equation*}
+
+    \paragraph{Sum of Poissons}
+    Since lambda is the rate an event occurs, the sum of two Poisson distributions has a rate which is the sum of the two lambdas. IE
+    $$X \sim Poisson(\lambda_1), \quad Y \sim Poisson(\lambda_2)$$
+    $$X + Y = Poisson(\lambda_1 + \lambda_2)$$
+
 
 \subsubsection{Geometric}
 The geometric distribution represents the number of independent bernoulli trials of probability $p$ until a success occurs:
